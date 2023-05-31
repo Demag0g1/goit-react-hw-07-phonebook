@@ -1,8 +1,8 @@
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { getContacts,  } from 'redux/selectors';
 import { nanoid } from 'nanoid';
-import { fetchingSuccess } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export const ContactForm = () => {
     if (addList) {
       return alert(`${contact.name} is already in contacts!`);
     }
-    dispatch(fetchingSuccess(contact));
+    dispatch(addContact(contact));
     evt.currentTarget.reset();
   };
 
@@ -51,8 +51,8 @@ export const ContactForm = () => {
           className={css.input}
           type="tel"
           name="number"
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
-          placeholder="123-45-67"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="123-456-7890"
           id={nanoid()}
           required
         />

@@ -1,7 +1,7 @@
 import css from './ContactList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from 'redux/operations';
 import { getContacts, getFilter } from 'redux/selectors';
-import { delContact } from 'redux/contactsSlice';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
@@ -13,7 +13,7 @@ export const ContactList = () => {
   );
 
   const onDelContact = id => {
-    dispatch(delContact(id));
+    dispatch(deleteContact(id));
   };
   if (!contactsFiltered?.length) {
     return (
@@ -27,8 +27,13 @@ export const ContactList = () => {
 
   return (
     <ul className={css.list}>
-      {contactsFiltered.map(({ id, name, number }) => (
+      {contactsFiltered.map(({ id, avatar, name, number }) => (
         <div className={css.item} key={id}>
+          <img
+            style={{ width: '2rem', borderRadius: '50%' }}
+            src={avatar}
+            alt={name}
+          />
           <span>{name}:</span>
           <span className={css.number}>{number}</span>
           <button
