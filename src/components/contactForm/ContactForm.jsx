@@ -1,7 +1,7 @@
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { addContact } from 'redux/contactsSlice';
+import { fetchingSuccess } from 'redux/contactsSlice';
 import { getContacts } from 'redux/selectors';
 
 export const ContactForm = () => {
@@ -24,7 +24,7 @@ export const ContactForm = () => {
     if (addList) {
       return alert(`${contact.name} is already in contacts!`);
     }
-    dispatch(addContact(contact));
+    dispatch(fetchingSuccess(contact));
     evt.currentTarget.reset();
   };
 

@@ -6,5 +6,3 @@ export const initialState = {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ],
 };
-
-export const API_URL ="https://6475a363e607ba4797dc38d4.mockapi.io/contacts/"
